@@ -1,0 +1,12 @@
+[package]
+name = "r_log"
+version = "0.1.0"
+edition = "2024"
+authors = ["Nicholas Raynes"]
+description = "A simple reliable logger for rust with multiple available logging levels."
+license  = "MIT"
+repository = "https://github.com/nraynes/r_log"
+keywords = ["log", "logging", "logger", "rust", "tools"]
+categories = ["development-tools"]
+
+[dependencies]
