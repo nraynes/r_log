@@ -1,6 +1,6 @@
 use std::fmt::Display;
 
-#[derive(PartialEq, PartialOrd, Clone)]
+#[derive(PartialEq, PartialOrd, Clone, Debug)]
 pub enum LogLevel {
     EMERGENCY,
     ALERT,
