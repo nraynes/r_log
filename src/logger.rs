@@ -60,7 +60,7 @@ impl Logger {
     }
 
     fn log<T: Console>(&self, writer: &mut T, message: &str, level: LogLevel) {
-        if self.level <= level {
+        if self.level >= level {
             writer.console(format!("{}: {}", level, message));
         }
     }
@@ -107,38 +107,38 @@ mod test {
     // Logs hidden.
 
     #[test]
-    fn test_logger_emergency_hidden() {
-        test_logger(LogLevel::DEBUG, LogLevel::EMERGENCY, "");
-    }
-
-    #[test]
     fn test_logger_alert_hidden() {
-        test_logger(LogLevel::DEBUG, LogLevel::ALERT, "");
+        test_logger(LogLevel::EMERGENCY, LogLevel::ALERT, "");
     }
 
     #[test]
     fn test_logger_critical_hidden() {
-        test_logger(LogLevel::DEBUG, LogLevel::CRITICAL, "");
+        test_logger(LogLevel::EMERGENCY, LogLevel::CRITICAL, "");
     }
 
     #[test]
     fn test_logger_error_hidden() {
-        test_logger(LogLevel::DEBUG, LogLevel::ERROR, "");
+        test_logger(LogLevel::EMERGENCY, LogLevel::ERROR, "");
     }
 
     #[test]
     fn test_logger_warning_hidden() {
-        test_logger(LogLevel::DEBUG, LogLevel::WARNING, "");
+        test_logger(LogLevel::EMERGENCY, LogLevel::WARNING, "");
     }
 
     #[test]
     fn test_logger_notification_hidden() {
-        test_logger(LogLevel::DEBUG, LogLevel::NOTIFICATION, "");
+        test_logger(LogLevel::EMERGENCY, LogLevel::NOTIFICATION, "");
     }
 
     #[test]
     fn test_logger_info_hidden() {
-        test_logger(LogLevel::DEBUG, LogLevel::INFO, "");
+        test_logger(LogLevel::EMERGENCY, LogLevel::INFO, "");
+    }
+
+    #[test]
+    fn test_logger_debug_hidden() {
+        test_logger(LogLevel::EMERGENCY, LogLevel::DEBUG, "");
     }
 
     // Logs shown.
@@ -146,7 +146,7 @@ mod test {
     #[test]
     fn test_logger_emergency() {
         test_logger(
-            LogLevel::EMERGENCY,
+            LogLevel::DEBUG,
             LogLevel::EMERGENCY,
             "EMERGENCY: The Shop Owner Sells French Fries",
         );
@@ -155,7 +155,7 @@ mod test {
     #[test]
     fn test_logger_alert() {
         test_logger(
-            LogLevel::EMERGENCY,
+            LogLevel::DEBUG,
             LogLevel::ALERT,
             "ALERT: The Shop Owner Sells French Fries",
         );
@@ -164,7 +164,7 @@ mod test {
     #[test]
     fn test_logger_critical() {
         test_logger(
-            LogLevel::EMERGENCY,
+            LogLevel::DEBUG,
             LogLevel::CRITICAL,
             "CRITICAL: The Shop Owner Sells French Fries",
         );
@@ -173,7 +173,7 @@ mod test {
     #[test]
     fn test_logger_error() {
         test_logger(
-            LogLevel::EMERGENCY,
+            LogLevel::DEBUG,
             LogLevel::ERROR,
             "ERROR: The Shop Owner Sells French Fries",
         );
@@ -182,7 +182,7 @@ mod test {
     #[test]
     fn test_logger_warning() {
         test_logger(
-            LogLevel::EMERGENCY,
+            LogLevel::DEBUG,
             LogLevel::WARNING,
             "WARNING: The Shop Owner Sells French Fries",
         );
@@ -191,7 +191,7 @@ mod test {
     #[test]
     fn test_logger_notification() {
         test_logger(
-            LogLevel::EMERGENCY,
+            LogLevel::DEBUG,
             LogLevel::NOTIFICATION,
             "NOTIFICATION: The Shop Owner Sells French Fries",
         );
@@ -200,7 +200,7 @@ mod test {
     #[test]
     fn test_logger_info() {
         test_logger(
-            LogLevel::EMERGENCY,
+            LogLevel::DEBUG,
             LogLevel::INFO,
             "INFO: The Shop Owner Sells French Fries",
         );
@@ -209,7 +209,7 @@ mod test {
     #[test]
     fn test_logger_debug() {
         test_logger(
-            LogLevel::EMERGENCY,
+            LogLevel::DEBUG,
             LogLevel::DEBUG,
             "DEBUG: The Shop Owner Sells French Fries",
         );
