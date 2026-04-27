@@ -1,6 +1,7 @@
+use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 
-#[derive(PartialEq, PartialOrd, Clone, Debug)]
+#[derive(Serialize, Deserialize, PartialEq, PartialOrd, Clone, Debug)]
 pub enum LogLevel {
     EMERGENCY,
     ALERT,

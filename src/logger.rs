@@ -1,4 +1,5 @@
 use crate::LogLevel;
+use serde::{Deserialize, Serialize};
 
 pub trait Console {
     fn console(&mut self, text: String);
@@ -18,6 +19,7 @@ impl Writer {
     }
 }
 
+#[derive(Serialize, Deserialize)]
 pub struct Logger {
     level: LogLevel,
 }

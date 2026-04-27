@@ -10,3 +10,4 @@ keywords = ["log", "logging", "logger", "rust", "tools"]
 categories = ["development-tools"]
 
 [dependencies]
+serde = { version = "1.0.228", features = ["derive"] } 
