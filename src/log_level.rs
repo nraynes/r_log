@@ -16,14 +16,14 @@ pub enum LogLevel {
 impl LogLevel {
     pub fn from_str(value: &str) -> Option<Self> {
         match value {
-            "emergency" => Some(LogLevel::EMERGENCY),
-            "alert" => Some(LogLevel::ALERT),
-            "critical" => Some(LogLevel::CRITICAL),
-            "error" => Some(LogLevel::ERROR),
-            "warning" => Some(LogLevel::WARNING),
-            "notification" => Some(LogLevel::NOTIFICATION),
-            "info" => Some(LogLevel::INFO),
-            "debug" => Some(LogLevel::DEBUG),
+            "EMERGENCY" => Some(LogLevel::EMERGENCY),
+            "ALERT" => Some(LogLevel::ALERT),
+            "CRITICAL" => Some(LogLevel::CRITICAL),
+            "ERROR" => Some(LogLevel::ERROR),
+            "WARNING" => Some(LogLevel::WARNING),
+            "NOTIFICATION" => Some(LogLevel::NOTIFICATION),
+            "INFO" => Some(LogLevel::INFO),
+            "DEBUG" => Some(LogLevel::DEBUG),
             _ => None,
         }
     }
