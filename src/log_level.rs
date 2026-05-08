@@ -1,7 +1,8 @@
+use clap::clap_derive::ValueEnum;
 use serde::{Deserialize, Serialize};
 use std::fmt::Display;
 
-#[derive(Serialize, Deserialize, PartialEq, PartialOrd, Clone, Debug)]
+#[derive(Serialize, Deserialize, PartialEq, PartialOrd, Clone, Debug, ValueEnum)]
 pub enum LogLevel {
     EMERGENCY,
     ALERT,
