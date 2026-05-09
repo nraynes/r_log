@@ -1,6 +1,6 @@
 use clap::clap_derive::ValueEnum;
 use serde::{Deserialize, Serialize};
-use std::fmt::Display;
+use std::{fmt::Display, str::FromStr};
 
 #[derive(Serialize, Deserialize, PartialEq, PartialOrd, Clone, Debug, ValueEnum)]
 pub enum LogLevel {
@@ -14,18 +14,20 @@ pub enum LogLevel {
     DEBUG,
 }
 
-impl LogLevel {
-    pub fn from_str(value: &str) -> Option<Self> {
-        match value {
-            "EMERGENCY" => Some(LogLevel::EMERGENCY),
-            "ALERT" => Some(LogLevel::ALERT),
-            "CRITICAL" => Some(LogLevel::CRITICAL),
-            "ERROR" => Some(LogLevel::ERROR),
-            "WARNING" => Some(LogLevel::WARNING),
-            "NOTIFICATION" => Some(LogLevel::NOTIFICATION),
-            "INFO" => Some(LogLevel::INFO),
-            "DEBUG" => Some(LogLevel::DEBUG),
-            _ => None,
+impl FromStr for LogLevel {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "EMERGENCY" => Ok(LogLevel::EMERGENCY),
+            "ALERT" => Ok(LogLevel::ALERT),
+            "CRITICAL" => Ok(LogLevel::CRITICAL),
+            "ERROR" => Ok(LogLevel::ERROR),
+            "WARNING" => Ok(LogLevel::WARNING),
+            "NOTIFICATION" => Ok(LogLevel::NOTIFICATION),
+            "INFO" => Ok(LogLevel::INFO),
+            "DEBUG" => Ok(LogLevel::DEBUG),
+            _ => Err(format!("{} is not a valid LogLevel", s)),
         }
     }
 }
