@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Custom pre-commit script for rust projects that performs automatic 
+# formatting and stages any changed files, as well as automatic doc 
+# generation and testing.
+
+# Pull changes first.
+git pull
+
 # Function to check if an element is present in an array.
 has_element() {
     local e
@@ -13,6 +20,15 @@ diff_pre=($(git diff --name-only))
 # Format files
 cargo fmt
 
+# Generate documentation
+cargo doc
+
+# Run tests
+cargo test
+
+# Check licenses
+cargo deny check licenses
+
 # Get the diff from git after formatting
 diff_post=($(git diff --name-only))
 
@@ -22,9 +38,3 @@ for val in "${diff_post[@]}"; do
         git add "$val"
     fi
 done
-
-# Generate documentation
-cargo doc
-
-# Run tests
-cargo test
